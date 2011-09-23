@@ -1,0 +1,91 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Attachment Studies Group - University of Minho</title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body { padding-top: 60px; }
+    </style>
+    <script src="static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/tmpl.js" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/ko.js" type="text/javascript" charset="utf-8"></script>
+    <script src="static/js/ss.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <ul class="nav">
+            <li class="active"><a href="#/home">Home</a></li>
+            <li><a href="#/people">People</a></li>
+            <li><a href="#/research">Research</a></li>
+            <li><a href="#/publications">Publications</a></li>
+            <li><a href="#/news">News</a></li>
+            <li><a href="#/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <section data-route-0="home" class="container">
+      <div class="hero-unit">
+        <h1>Attachment Studies Group</h1>
+        <p/>
+        <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <p><a href="#people" class="btn primary large">Learn more about us &raquo;</a></p>
+      </div>
+      <div class="row">
+        <div class="span8">
+          <h2>Latest Paper</h2>
+          <p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+          <p><a class="btn" href="#">Dig in &raquo;</a></p>
+        </div>
+        <div class="span8">
+          <h2>Latest News</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">Read more &raquo;</a></p>
+       </div>
+      </div>
+    </section>
+
+    <section data-route-0="people" class="container">
+      <div id="person" data-bind="template: {name:'render_person'}"  class="container-fluid"></div>
+      <div id="list_staff" class="row" data-bind="template: {name:'render_people_row'}"></div>
+    </section>
+
+    <div class="container">
+      <footer>
+        <p>Copyright 2011 Attachment Studies Group — University of Minho. All Rights Reserved.</p>
+      </footer>
+    </div>
+    <script type="text/x-jquery-tmpl" id="render_person">
+    
+          <div class="sidebar">
+            <img src="${selected_person().image}" alt="${selected_person().name}"/>
+          </div>
+          <div class="content">
+            <h1>${selected_person().name}</h1>
+            <h2>${selected_person().title}</h2>
+            <hr style="width:75%"/>
+            <div>
+              {{html selected_person().description}}
+            </div>
+        </div>
+    </script>
+    <script type="text/x-jquery-tmpl" id="render_people_row">
+    {{each staff}}
+      <div class="span4">
+        <a href="#/people/${escape(name)}"><img src="${image}" alt="${name}"/></a>
+        <h3><a href="#/people/${escape(name)}">${name}</a></h3>
+        <em>${title}</em>
+        <p/>
+      </div>
+      {{/each}}
+    </script>
+  <script src="static/js/routes.js" type="text/javascript" charset="utf-8"></script>
+  <script src="static/model.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
