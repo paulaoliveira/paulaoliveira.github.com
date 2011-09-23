@@ -23,7 +23,7 @@
     <div class="topbar">
       <div class="white_fill">
         <div class="container">
-          <h3><a><img src="static/img/uminho-logo.png"/><img src="static/img/epsi-logo.png"/></a></h3>
+          <h3><a href="http://uminho.pt"><img src="static/img/uminho-logo.png"/><img src="static/img/epsi-logo.png"/></a></h3>
           <ul class="nav" id="nav">
             <li id="nav_home"><a class="home" href="#/home">Home</a></li>
             <li id="nav_people"><a class="people" href="#/people">People</a></li>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <section data-route-0="home" class="container">
+    <section data-route="home" class="container">
       <div class="hero-unit">
         <h1>Attachment Studies Group</h1>
         <p/>
@@ -57,9 +57,73 @@
       </div>
     </section>
 
-    <section data-route-0="people" class="container">
-      <div id="person" data-bind="template: {name:'render_person'}"  class="container-fluid"></div>
-      <div id="list_staff" class="row" data-bind="template: {name:'render_people_row'}"></div>
+    <section data-route="people" class="container">
+      <div id="people_show" data-bind="template: {name:'show_person'}"  class="container-fluid"></div>
+      <div id="people_list" class="row" data-bind="template: {name:'list_people'}"></div>
+      <script type="text/x-jquery-tmpl" id="show_person">
+      {{if selected_person()}}
+        <div class="sidebar">
+          <img src="${selected_person().image}" 
+               alt="${selected_person().name}" />
+        </div>
+        <div class="content">
+          <h1>${selected_person().name}</h1>
+          <h2>${selected_person().title}</h2>
+          <hr style="width:75%"/>
+          <div>
+            {{html selected_person().description}}
+          </div>
+        </div>
+      {{/if}}
+      </script>
+      <script type="text/x-jquery-tmpl" id="list_people">
+      {{each staff}}
+        <div class="span4">
+          <a href="#/people/${escape(name)}"><img src="${image}" alt="${name}"/></a>
+          <h3><a href="#/people/${escape(name)}">${name}</a></h3>
+          <em>${title}</em>
+          <p/>
+        </div>
+      {{/each}}
+      </script>
+    </section>
+
+    <section data-route="research" class="container">
+      Research goes here
+    </section>
+
+    <section data-route="publications" class="container">
+      Publications goes here
+    </section>
+
+    <section data-route="news" class="container">
+      <div id="news_show" class="row" data-bind="template: {name:'show_news'}"  class="container-fluid"></div>
+      <div id="news_list" class="row" data-bind="template: {name:'list_news'}"></div>
+      <script type="text/x-jquery-tmpl" id="show_news">
+      {{if selected_news_item()}}
+        <div class="span16">
+          <h3>${selected_news_item().title} <small>on ${selected_news_item().date}</small></h3>
+          <p>By <a href="#/people/${escape(selected_news_item().by)}">${selected_news_item().by}</a></p>
+          <hr/>
+          {{html selected_news_item().body}}
+        </div>
+      {{/if}}
+      </script>
+      <script type="text/x-jquery-tmpl" id="list_news">
+      {{each news}}
+        <div class="span16">
+          <h3>${title} <small>on ${date}</small></h3>
+          <p>By <a href="#/people/${escape(by)}">${by}</a></p>
+          <hr/>
+          {{html body}}
+          <p><a class="btn" href="#/news/${permalink}">Full Page &raquo;</a></p>
+        </div>
+      {{/each}}
+      </script>
+    </section>
+
+    <section data-route="contact" class="container">
+      Contact goes here
     </section>
 
     <div class="container">
@@ -67,44 +131,12 @@
         <p align="right">Copyright 2011 Attachment Studies Group, University of Minho — All Rights Reserved.</p>
       </footer>
     </div>
-    <script type="text/x-jquery-tmpl" id="render_person">
-    {{if selected_person()}}
-      <div class="paozinho">
-        <ul>
-          <li><a href="#/people">People</a></li>
-          <li class="divider">&raquo;</li>
-          <li class="active"><a>${selected_person().name}</a></li>
-        </ul>
-      </div>
-      <div class="sidebar">
-        <img src="${selected_person().image}" 
-             alt="${selected_person().name}" />
-      </div>
-      <div class="content">
-        <h1>${selected_person().name}</h1>
-        <h2>${selected_person().title}</h2>
-        <hr style="width:75%"/>
-        <div>
-          {{html selected_person().description}}
-        </div>
-      </div>
-    {{/if}}
+
+    <script src="static/visuals.js" type="text/javascript" charset="utf-8">
     </script>
-    <script type="text/x-jquery-tmpl" id="render_people_row">
-    {{each staff}}
-      <div class="span4">
-        <a href="#/people/${escape(name)}"><img src="${image}" alt="${name}"/></a>
-        <h3><a href="#/people/${escape(name)}">${name}</a></h3>
-        <em>${title}</em>
-        <p/>
-      </div>
-      {{/each}}
+    <script src="static/js/routes.js" type="text/javascript" charset="utf-8">
     </script>
-  <script src="static/visuals.js" type="text/javascript" charset="utf-8">
-  </script>
-  <script src="static/js/routes.js" type="text/javascript" charset="utf-8">
-  </script>
-  <script src="static/model.js" type="text/javascript" charset="utf-8">
-  </script>
+    <script src="static/model.js" type="text/javascript" charset="utf-8">
+    </script>
   </body>
 </html>
