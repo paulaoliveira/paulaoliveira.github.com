@@ -37,50 +37,72 @@
     </div>
 
     <section data-route="home" class="container">
-      <div class="hero-unit">
+      <div class="hero-unit" style="background-image: url('static/img/hero.jpg');">
         <h1>Attachment Studies Group</h1>
         <p/>
-        <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-        <p><a href="#people" class="btn primary large">Learn more about us &raquo;</a></p>
+        <div class="hero-body">
+          <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam.</p>
+          <br/>
+          <p style="text-align: right;"><a href="#/people" class="btn danger large">Learn more about us &raquo;</a></p>
+        </div>
       </div>
       <div class="row">
         <div class="span8">
-          <h2>Latest Paper</h2>
-          <p>Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-          <p><a class="btn" href="#">Dig in &raquo;</a></p>
+           <div id="publications_show_latest" data-bind="template: {name:'show_latest_publication'}"></div>
         </div>
         <div class="span8">
-          <h2>Latest News</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">Read more &raquo;</a></p>
+           <div id="news_show_latest" data-bind="template: {name:'show_latest_news'}"></div>
        </div>
       </div>
+      <script type="text/x-jquery-tmpl" id="show_latest_news">
+      {{if news.newest()}}
+        <h2>News: ${news.newest().title}</h2>
+        <p>${news.newest().description}</p>
+        <p><a class="btn" href="${news.newest().permalink}">Read More &raquo;</a></p>
+      {{/if}}
+      </script>
+      <script type="text/x-jquery-tmpl" id="show_latest_publication">
+      {{if ko.app.models.publications.newest()}}
+        <h2>Publication: ${publications.newest().title}</h2>
+        {{html publications.newest().abstract}}
+        <p><a class="btn" href="#/news/${publications.newest().permalink}">Read More &raquo;</a></p>
+      {{/if}}
+      </script>
     </section>
-
+<!--
     <section data-route="people" class="container">
-      <div id="people_show" data-bind="template: {name:'show_person'}"  class="container-fluid"></div>
-      <div id="people_list" class="row" data-bind="template: {name:'list_people'}"></div>
-      <script type="text/x-jquery-tmpl" id="show_person">
+      <div id="staff_show" data-bind="template: {name:'show_staff'}"  class="container-fluid">
+      </div>
+      <div id="staff_list" class="row" data-bind="template: {name:'list_staff'}">
+        
+      </div>
+      <script type="text/x-jquery-tmpl" id="show_staff">
       {{if selected_person()}}
-        <div class="sidebar">
-          <img src="${selected_person().image}" 
-               alt="${selected_person().name}" />
+        <div class="sidebar" style="align: center;">
+          <div class="photo">
+            <img src="${selected_person().image}"
+                 alt="${selected_person().name}"/>
+          </div>
+          <div class="inline picture">
+            <ul>
+              <li><img style="vertical-align: middle;" src="static/img/email.png"/></li>
+              <li><a href="mailto:somemail@psi.uminho.pt">somemail@psi.uminho.pt</a></li>
+            </ul>
+          </div>
         </div>
         <div class="content">
-          <h1>${selected_person().name}</h1>
-          <h2>${selected_person().title}</h2>
-          <hr style="width:75%"/>
+          <h1>${selected_person().name} <small>${selected_person().title}</small></h1>
           <div>
             {{html selected_person().description}}
           </div>
         </div>
       {{/if}}
       </script>
-      <script type="text/x-jquery-tmpl" id="list_people">
+      <script type="text/x-jquery-tmpl" id="list_staff">
       {{each staff}}
         <div class="span4">
-          <a href="#/people/${escape(name)}"><img src="${image}" alt="${name}"/></a>
-          <h3><a href="#/people/${escape(name)}">${name}</a></h3>
+          <a href="#/people/${permalink}"><img src="${image}" alt="${name}"/></a>
+          <h3><a href="#/people/${permalink}">${name}</a></h3>
           <em>${title}</em>
           <p/>
         </div>
@@ -93,17 +115,42 @@
     </section>
 
     <section data-route="publications" class="container">
-      Publications goes here
+      <div id="publications_show" class="row" data-bind="template: {name:'show_publications'}"  class="container-fluid">
+      </div>
+      <div id="publications_list" class="row" data-bind="template: {name:'list_publications'}">
+      </div>
+      <script type="text/x-jquery-tmpl" id="show_publications">
+      {{if selected_publication()}}
+        <div class="span16">
+          <h3>${selected_publication().title} <small>on ${selected_publication().date}</small></h3>
+          <p>By <a href="#/people/${escape(selected_publication().author)}">${selected_publication().author}</a></p>
+          <hr/>
+          {{html selected_publication().abtract}}
+        </div>
+      {{/if}}
+      </script>
+      <script type="text/x-jquery-tmpl" id="list_publications">
+      {{each publications}}
+        <div class="span16">
+          <h3>${title} <small>on ${date}</small></h3>
+          <hr/>
+          {{html abstract}}
+          <p><a class="btn" href="#/publications/${permalink}">More Details &raquo;</a></p>
+        </div>
+      {{/each}}
+      </script>
     </section>
 
     <section data-route="news" class="container">
-      <div id="news_show" class="row" data-bind="template: {name:'show_news'}"  class="container-fluid"></div>
-      <div id="news_list" class="row" data-bind="template: {name:'list_news'}"></div>
+      <div id="news_show" class="row" data-bind="template: {name:'show_news'}"  class="container-fluid">
+      </div>
+      <div id="news_list" class="row" data-bind="template: {name:'list_news'}">
+      </div>
       <script type="text/x-jquery-tmpl" id="show_news">
       {{if selected_news_item()}}
         <div class="span16">
           <h3>${selected_news_item().title} <small>on ${selected_news_item().date}</small></h3>
-          <p>By <a href="#/people/${escape(selected_news_item().by)}">${selected_news_item().by}</a></p>
+          <p>By <a href="#/people/${ko.app.permalinks.staff(selected_news_item().author())}">${selected_news_item().author}</a></p>
           <hr/>
           {{html selected_news_item().body}}
         </div>
@@ -113,7 +160,7 @@
       {{each news}}
         <div class="span16">
           <h3>${title} <small>on ${date}</small></h3>
-          <p>By <a href="#/people/${escape(by)}">${by}</a></p>
+          <p>By <a href="#/people/${ko.app.permalinks.staff(author())}">${author}</a></p>
           <hr/>
           {{html body}}
           <p><a class="btn" href="#/news/${permalink}">Full Page &raquo;</a></p>
@@ -123,20 +170,45 @@
     </section>
 
     <section data-route="contact" class="container">
-      Contact goes here
+      <div class="container-fluid">
+        <div class="sidebar">
+          <address>
+            Isabel Soares<br/>
+            Escola de Psicologia<br/>
+            Universidade do Minho<br/>
+            Campus de Gualtar<br/>
+            4710-057 Braga
+          </address>
+          <div class="inline picture">
+            <ul>
+              <li><img style="vertical-align: middle;" src="static/img/email.png"/></li>
+              <li><a href="mailto:somemail@psi.uminho.pt">somemail@psi.uminho.pt</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="content">
+          <div class="hero-unit">
+            <div class="hero-body">
+              Google map
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
-    <div class="container">
+-->
+    <div class="container" id="footer">
       <footer>
-        <p align="right">Copyright 2011 Attachment Studies Group, University of Minho — All Rights Reserved.</p>
+        <p align="right">Copyright 2011 Attachment Studies Group, University of Minho</p>
       </footer>
     </div>
 
+    <script src="static/models.js" type="text/javascript" charset="utf-8">
+    </script>
     <script src="static/visuals.js" type="text/javascript" charset="utf-8">
     </script>
-    <script src="static/js/routes.js" type="text/javascript" charset="utf-8">
+    <script src="static/routes.js" type="text/javascript" charset="utf-8">
     </script>
-    <script src="static/model.js" type="text/javascript" charset="utf-8">
+    <script src="static/bindings.js" type="text/javascript" charset="utf-8">
     </script>
   </body>
 </html>

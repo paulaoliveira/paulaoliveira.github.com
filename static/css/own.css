@@ -1,18 +1,23 @@
-.topbar h3 a { padding: 0px; }
+address                      { font-size: 1.1em; }
+.topbar h3 a                 { padding: 0px; }
 .topbar div > ul .active > a, .nav .active > a { background-color: rgba(0, 0, 0, 0.5); }
-.topbar div > ul a:hover, .nav a:hover {  color: #000; }
-.topbar div > ul a, .nav a { color: #000; line-height: 17px;}
-.topbar li { padding-top: 2px;}
-.white_fill { background-color: rgba(255, 255, 255, 0.9); }
-.paozinho li{display:inline;text-shadow:0 1px 0 #ffffff;}
-.paozinho .divider{padding:0 5px;color:#bfbfbf;}
-.paozinho .active a{color:#404040;}
+.topbar div > ul a:hover, .nav a:hover         {  color: #000; }
+.topbar div > ul a, .nav a   { color: #000; line-height: 17px; }
+.topbar li                   { padding-top: 2px; }
 .topbar .home_active         { padding-top: 0px; border-top: 2px solid #FC6; }
 .topbar .people_active       { padding-top: 0px; border-top: 2px solid #6CF; }
 .topbar .research_active     { padding-top: 0px; border-top: 2px solid #F66; }
 .topbar .publications_active { padding-top: 0px; border-top: 2px solid #F6C; }
 .topbar .news_active         { padding-top: 0px; border-top: 2px solid #6F6; }
 .topbar .contact_active      { padding-top: 0px; border-top: 2px solid #66F; }
+.hero-unit                   { padding-left: 0; }
+.hero-unit h1                { background-color: rgba(255, 255, 255, 0.5); height: 70px; vertical-align: middle; }
+.hero-body, .hero-unit h1    { padding-left: 60px; }
+.hero-body                   { color: #000; text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.75);}
+.white_fill                  { background-color: rgba(255, 255, 255, 0.9); }
+.inline.picture ul           { padding: 0; margin: 0 0 10px 0; text-align: center; }
+.inline.picture li           { display:inline; text-shadow:0 1px 0 #ffffff; }
+.photo                       { padding-bottom: 10px; text-align: center; }
 #nav li a:hover.home         { background-color: rgba(255, 204, 102, 0.1); }
 #nav li a:hover.people       { background-color: rgba(102, 204, 255, 0.1); }
 #nav li a:hover.research     { background-color: rgba(255, 102, 102, 0.1); }
