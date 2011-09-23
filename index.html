@@ -6,6 +6,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/own.css" rel="stylesheet">
     <style type="text/css">
       body { padding-top: 60px; }
     </style>
@@ -20,15 +21,16 @@
   </head>
   <body>
     <div class="topbar">
-      <div class="fill">
+      <div class="white_fill">
         <div class="container">
-          <ul class="nav">
-            <li class="active"><a href="#/home">Home</a></li>
-            <li><a href="#/people">People</a></li>
-            <li><a href="#/research">Research</a></li>
-            <li><a href="#/publications">Publications</a></li>
-            <li><a href="#/news">News</a></li>
-            <li><a href="#/contact">Contact</a></li>
+          <h3><a><img src="static/img/uminho-logo.png"/><img src="static/img/epsi-logo.png"/></a></h3>
+          <ul class="nav" id="nav">
+            <li id="nav_home"><a class="home" href="#/home">Home</a></li>
+            <li id="nav_people"><a class="people" href="#/people">People</a></li>
+            <li id="nav_research"><a class="research" href="#/research">Research</a></li>
+            <li id="nav_publications"><a class="publications" href="#/publications" >Publications</a></li>
+            <li id="nav_news"><a class="news" href="#/news">News</a></li>
+            <li id="nav_contact"><a class="contact" href="#/contact">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -62,11 +64,18 @@
 
     <div class="container">
       <footer>
-        <p>Copyright 2011 Attachment Studies Group — University of Minho. All Rights Reserved.</p>
+        <p align="right">Copyright 2011 Attachment Studies Group, University of Minho — All Rights Reserved.</p>
       </footer>
     </div>
     <script type="text/x-jquery-tmpl" id="render_person">
     {{if selected_person()}}
+      <div class="paozinho">
+        <ul>
+          <li><a href="#/people">People</a></li>
+          <li class="divider">&raquo;</li>
+          <li class="active"><a>${selected_person().name}</a></li>
+        </ul>
+      </div>
       <div class="sidebar">
         <img src="${selected_person().image}" 
              alt="${selected_person().name}" />
@@ -91,7 +100,11 @@
       </div>
       {{/each}}
     </script>
-  <script src="static/js/routes.js" type="text/javascript" charset="utf-8"></script>
-  <script src="static/model.js" type="text/javascript" charset="utf-8"></script>
+  <script src="static/visuals.js" type="text/javascript" charset="utf-8">
+  </script>
+  <script src="static/js/routes.js" type="text/javascript" charset="utf-8">
+  </script>
+  <script src="static/model.js" type="text/javascript" charset="utf-8">
+  </script>
   </body>
 </html>
