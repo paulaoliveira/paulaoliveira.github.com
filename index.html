@@ -121,7 +121,7 @@
       </div>
       <script type="text/x-jquery-tmpl" id="show_publications">
       {{if publications.selected()}}
-      <h1>${publications.selected().title} <small>on ${publications.selected().date} {{if publications.selected().download()}}
+      <h1>${publications.selected().title} <small>on ${publications.selected().date} {{if publications.selected().download}}
         <a href="${publications.selected().download()}"><img src="static/img/disk.png"/></a>
       {{/if}}</small></h1>
       <p>
