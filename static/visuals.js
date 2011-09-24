@@ -3,9 +3,12 @@ $(document).ready(function() {
 
   $.each(ko.app.model_names, function(_,name) {
     ko.app.visuals['show_' + name] = function (permalink_observable) {
-        return function (permalink) {
+        return function (route_parameter) {
+          var permalink = "#/" + name + "/" + route_parameter;
           $("#" + name + "_list").hide();
-          if(permalink_observable  && permalink_observable()  !== permalink)  { permalink_observable(permalink); }
+          if(permalink_observable  && permalink_observable()  !== permalink)  { 
+            permalink_observable(permalink); 
+          }
           $("#" + name + "_show").show();
         };
       };

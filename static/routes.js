@@ -2,8 +2,8 @@ $(document).ready(function() {
   ko.app.kickstart_router = function (v) {
     var routes          =
         { '/home'                : { on: function() {} }
-        , '/people'              : { on: ko.app.visuals.list_staff  }
-        , '/people/:perma'       : { on: ko.app.visuals.show_staff(v.staff.selected_permalink) }
+        , '/people'              : { on: ko.app.visuals.list_people  }
+        , '/people/:perma'       : { on: ko.app.visuals.show_people(v.people.selected_permalink) }
         , '/research'            : { on: function() {} }
         , '/publications'        : { on: ko.app.visuals.list_publications }
         , '/publications/:perma' : { on: ko.app.visuals.show_publications(v.publications.selected_permalink) }
@@ -30,7 +30,7 @@ $(document).ready(function() {
   }
 
   ko.app.permalinks = {};
-  ko.app.permalinks.staff = function (name) {
+  ko.app.permalinks.people = function (name) {
     if(typeof name !== 'string') { name = name.name(); } // we got an item
     return "#/people/" + escape(name);
   };

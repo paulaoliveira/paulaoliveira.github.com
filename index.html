@@ -23,7 +23,7 @@
     <div class="topbar">
       <div class="white_fill">
         <div class="container">
-          <h3><a href="http://uminho.pt"><img src="static/img/uminho-logo.png"/><img src="static/img/epsi-logo.png"/></a></h3>
+          <h3><a href="http://www.psi.uminho.pt/"><img src="static/img/uminho-logo.png"/><img src="static/img/epsi-logo.png"/></a></h3>
           <ul class="nav" id="nav">
             <li id="nav_home"><a class="home" href="#/home">Home</a></li>
             <li id="nav_people"><a class="people" href="#/people">People</a></li>
@@ -71,34 +71,34 @@
     </section>
 
     <section data-route="people" class="container">
-      <div id="staff_show" data-bind="template: {name:'show_staff'}"  class="container">
+      <div id="people_show" data-bind="template: {name:'show_people'}"  class="container">
       </div>
-      <div id="staff_list" class="container" data-bind="template: {name:'list_staff'}">
+      <div id="people_list" class="container" data-bind="template: {name:'list_people'}">
         
       </div>
-      <script type="text/x-jquery-tmpl" id="show_staff">
-      {{if staff.selected()}}
-      <div class="hero-unit" style="background-image: url('static/img/staff/${staff.selected().name}.jpg'); height: 470px;">
-        <h1> ${staff.selected().name} 
-          <small style="color: #404040">${staff.selected().title}</small>
+      <script type="text/x-jquery-tmpl" id="show_people">
+      {{if people.selected()}}
+      <div class="hero-unit" style="background-image: url('static/img/people/${people.selected().name}.jpg'); height: 470px;">
+        <h1> ${people.selected().name} 
+          <small style="color: #404040">${people.selected().title}</small>
         </h1>
         <p/>
         <div class="hero-body" style="width: 50%;">
-          {{html staff.selected().description}}
-          <a href="mailto:${staff.selected().email()}">
+          {{html people.selected().description}}
+          <a href="mailto:${people.selected().email()}">
             <img style="vertical-align: middle;"
-                 src="static/img/email.png" alt="Say Hi to ${staff.selected().name}"/>
+                 src="static/img/email.png" alt="Say Hi to ${people.selected().name}"/>
           </a>
           <br/>
         </div>
       </div>
       {{/if}}
       </script>
-      <script type="text/x-jquery-tmpl" id="list_staff">
+      <script type="text/x-jquery-tmpl" id="list_people">
       <h1>People</h1>
-      {{each staff.collection()}} 
-        <a href="#/people/${permalink}">
-          <div class="hero-unit hero-thumb" style="background-image: url('static/img/staff/${name}.jpg'); height: 25px; background-position: 0px;">
+      {{each people.collection()}} 
+        <a href="${permalink}">
+          <div class="hero-unit hero-thumb" style="background-image: url('static/img/people/${name}.jpg'); height: 25px; background-position: 0px;">
             <h1 style="font-size: 1.5em;">
               ${name}
               <small style="color: #404040">${title}</small>
@@ -111,69 +111,69 @@
 
     <section data-route="research" class="container">
       <h1>Research</h1>
-      <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam.</p>
+      <p>Within the framework of attachment theory and of motivation goal theory, this study explored the relation between quality of attachment strategies and quality of motivational strategies in a sample of young adolescents. Specifically, this study examined patterns of thoughts, behaviors, and emotions as they related to representations of attachment and motivational functioning in situations that challenge or threaten three psychological needs (emotional security, competence, and autonomy). Forty-four students, aged 11 to 14 years, responded to imagined stressful situations in order to: (a) assess attachment strategies; (b) identify and assess students' motivational strategies in stressful classroom circumstances; (c) assess motivational strategies of students with high and low control and agency beliefs; and (d) examine the relations between attachment and motivational strategies. Four distinct action patterns were identified: flexible action, rigid action, passive behavior, and disorganized behavior. Significant relations were found between control beliefs and motivational strategies, as well as a trend toward relations between attachment and motivational strategies, suggesting that secure adolescents show more constructive motivational strategies and less disorganized strategies when compared to insecure adolescents.</p>
     </section>
 
     <section data-route="publications" class="container">
-      <div id="publications_show" class="row" data-bind="template: {name:'show_publications'}"  class="container-fluid">
+      <div id="publications_show" class="container" data-bind="template: {name:'show_publications'}"  class="container-fluid">
       </div>
       <div id="publications_list" class="container" data-bind="template: {name:'list_publications'}">
       </div>
       <script type="text/x-jquery-tmpl" id="show_publications">
       {{if publications.selected()}}
-        <div class="span16">
-          <h3>${publications.selected().title} <small>on ${publications.selected().date}</small></h3>
-          <p>By <a href="#/people/${escape(publications.selected().author)}">
-            ${publications.selected().author}</a></p>
-          <hr/>
-          {{html publications.selected().abtract}}
-        </div>
+      <h1>${publications.selected().title} <small>on ${publications.selected().date} {{if publications.selected().download()}}
+        <a href="${publications.selected().download()}"><img src="static/img/disk.png"/></a>
+      {{/if}}</small></h1>
+      <p>
+      {{if publications.selected().members_authors() && 
+           publications.selected().members_authors().length > 0}}
+      Team Members Involved 
+        {{each publications.selected().members_authors()}}
+        <a href="${ko.app.permalinks.people(this.toString())}">${this}</a
+        >{{if ko.app.helpers.except_last(this.toString(), publications.selected().members_authors())}}, {{/if}}
+        {{/each}}
+      {{/if}}
+      </p>
+      <hr/>
+      {{html publications.selected().abstract}}
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="list_publications">
       <h1>Publications</h1>
       <ul>
       {{each publications.collection()}}
-        <li>${apa} <a href="#/publications/${permalink}">&raquo;</a>
-        {{if download}}
-          <a href="${download}"><img src="static/img/page_go.png"/></a>
-        {{/if}}
-        </li>
+        <li>${apa} <a href="${permalink}">&raquo;</a></li>
       {{/each}}
       </ul>
       </script>
     </section>
 
     <section data-route="news" class="container">
-      <div id="news_show" class="row" data-bind="template: {name:'show_news'}"  class="container-fluid">
+      <div id="news_show" class="container" data-bind="template: {name:'show_news'}"  class="container-fluid">
       </div>
-      <div id="news_list" class="row" data-bind="template: {name:'list_news'}">
+      <div id="news_list" class="container" data-bind="template: {name:'list_news'}">
       </div>
       <script type="text/x-jquery-tmpl" id="show_news">
       {{if news.selected()}}
-        <div class="span16">
-          <h1>${news.selected().title} <small>on ${news.selected().date}</small></h1>
-          <p>By 
-            <a href="#/people/${ko.app.permalinks.staff(news.selected().author())}">
-              ${news.selected().author}
-            </a>
-          </p>
-          <hr/>
-          {{html news.selected().body}}
-        </div>
+      <h1>${news.selected().title} <small>on ${news.selected().date}</small></h1>
+      <p>By 
+        <a href="${ko.app.permalinks.people(news.selected().author())}">
+          ${news.selected().author}
+        </a>
+      </p>
+      <hr/>
+      {{html news.selected().body}}
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="list_news">
-      <div class="span16"><h1>News</h1></div>
+      <h1>News</h1>
       {{each news.collection()}}
-        <div class="span16">
-          <h4>${title} <small>on ${date}</small></h4>
-          {{html body}}
-          <a href="#/news/${permalink}">Read More &raquo;</a>
-          {{if title !== news.oldest() }}
-            <hr/>
-          {{/if}}
-        </div>
+      <h2>${title} <small>on ${date}</small></h2>
+      {{html body}}
+      <a href="${permalink}">Read More &raquo;</a>
+      {{if !this.title().match(new RegExp(news.oldest().title())) }}
+        <hr/>
+      {{/if}}
       {{/each}}
       </script>
     </section>
@@ -181,10 +181,9 @@
     <section data-route="contact" class="container">
       <div class="container">
         <h1>Contact</h1>
-        <div class="hero-unit">
-          <div class="hero-body">
-            Google map
-          </div>
+        <div class="hero-unit" style="padding: 0px">
+           <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;t=m&amp;vpsrc=0&amp;ll=41.561053,-8.395722&amp;spn=0.005619,0.00912&amp;z=16&amp;output=embed">
+           </iframe>
         </div>
         <div>
         <address>

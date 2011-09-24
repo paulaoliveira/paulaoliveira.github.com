@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  var staff = 
+  var people = 
     [ { name        : "Isabel Soares"
       , title       : "Principal Investigator"
       , image       : "static/img/face.png"
       , email       : "fake_email@psi.uminho.pt"
-      , description : "<p>I'm super lame</p>"
+      , description : "<p>Professora catedrática do Departamento de Psicologia da Universidade do Minho na área da Psicologia Clínica e Psicologia do Desenvolvimento. É psicoterapeuta e investigadora das relações de vinculação, coordenando o Grupo de Estudos de Vinculação.</p>"
       }
     , { name        : "Paula Oliveira"
       , title       : "PhD Student"
@@ -16,7 +16,7 @@ $(document).ready(function() {
       , title       : "PhD Student"
       , image       : "static/img/face.png"
       , email       : "fake_email@psi.uminho.pt"
-      , description : "<p>I'm super lame</p>"
+      , description : "<p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam.</p>"
       }
     ];
   var news =
@@ -34,26 +34,25 @@ $(document).ready(function() {
       }
     ];
   var publications =
-    [ { title          : "Bla Bla Bla Bla Bla"
-      , date           : "June 4th, 2011"
-      , apa            : "Something really boring that conforms to APA, 2008, et al."
-      , member_authors : ["Isabel Soares", "Paula Oliveira"]
-      , abstract       : "<p>We talk about bla</p>"
-      , download       : "http://optional.com/download"
+    [ { title           : "Bla Bla Bla Bla Bla"
+      , date            : "June 4th, 2011"
+      , apa             : "Something really boring that conforms to APA, 2008, et al."
+      , members_authors : ["Isabel Soares", "Paula Oliveira", "Ines Fachada"]
+      , abstract        : "<p>We talk about bla</p>"
+      , download        : "http://optional.com/download"
       }
-    , { title          : "Another one bites the dust"
-      , date           : "July 4th, 2011"
-      , apa            : "Something really boring that conforms to APA, 2008, et al."
-      , member_authors : ["Ines Fachada", "Paula Oliveira"]
-      , abstract       : "<p>We talk about issues related to something. Can't download this thing is published and you need to pay to get</p>"
-      , download       : "http://optional.com/buyme"
+    , { title           : "Another one bites the dust"
+      , date            : "July 4th, 2011"
+      , apa             : "Something really boring that conforms to APA, 2008, et al."
+      , members_authors : []
+      , abstract        : "<p>We talk about issues related to something. Can't download this thing is published and you need to pay to get</p>"
       }
     ];
 
   ko.app = {}; // start our namespace
   ko.app.models = 
-    { staff:
-      { collection         : ko.observableArray(staff)
+    { people:
+      { collection         : ko.observableArray(people)
       , selected           : ko.observable()
       , selected_permalink : ko.observable()
       }
