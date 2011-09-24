@@ -1,8 +1,3 @@
-// visuals is a made up thing, no one is expected to understand
-// -
-// logic is that controllers dont have any view code, so it cant be a controller
-// so its a visual controller, which makes sense since this is where our jquery
-// app code lives
 $(document).ready(function() {
   ko.app.visuals = {};
 

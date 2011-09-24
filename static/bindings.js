@@ -20,16 +20,13 @@ $(document).ready(function() {
   }
   
   function find_selected(permalink, collection, item_observable) {
-    return function () {
-      if(!permalink) { return; }
-      var item = ko.utils.arrayFilter(collection,
-        function(e) {
-          return e.permalink() === permalink; 
-        })[0];
-      if(!item) { return; }
-      item_observable(item);
-      return;
-    };
+    var item = ko.utils.arrayFilter(collection,
+      function(e) {
+        return e.permalink() === permalink; 
+      })[0];
+    if(!item) { return; }
+    item_observable(item);
+    return;
   }
 
   // initialize models dependent observables
@@ -38,7 +35,7 @@ $(document).ready(function() {
     ko.dependentObservable(function() {
         ko.utils.arrayMap(this[m].collection(), make_observable_and_create_permalink(m)); }
     , ko.app.models);
-    // update selected item when you click a related url
+    // update selected item to whatever is pointed by selected_permalink
     ko.dependentObservable(function() {
         var current_model  = this[m]
           , selected_perma = current_model.selected_permalink()
@@ -50,6 +47,10 @@ $(document).ready(function() {
     // get the newest element of each model
     ko.app.models[m].newest = ko.dependentObservable(function() {
       return this[m].collection()[0];
+    }, ko.app.models);
+    // get the oldest element of each model
+    ko.app.models[m].oldest = ko.dependentObservable(function() {
+      return this[m].collection()[this[m].collection().length-1];
     }, ko.app.models);
   });
 

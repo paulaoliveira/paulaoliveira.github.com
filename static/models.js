@@ -10,7 +10,7 @@ $(document).ready(function() {
       , title       : "PhD Student"
       , image       : "static/img/face.png"
       , email       : "fake_email@psi.uminho.pt"
-      , description : "<p>I'm super lame</p>"
+      , description : "<p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam.</p>"
       }
     , { name        : "Ines Fachada"
       , title       : "PhD Student"
@@ -46,7 +46,7 @@ $(document).ready(function() {
       , apa            : "Something really boring that conforms to APA, 2008, et al."
       , member_authors : ["Ines Fachada", "Paula Oliveira"]
       , abstract       : "<p>We talk about issues related to something. Can't download this thing is published and you need to pay to get</p>"
-      , buy            : "http://optional.com/buyme"
+      , download       : "http://optional.com/buyme"
       }
     ];
 

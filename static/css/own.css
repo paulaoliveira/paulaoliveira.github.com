@@ -1,8 +1,11 @@
-address                      { font-size: 1.1em; }
+address                      { font-size: 14px; font-weight: 200; }
+p                            { font-size: 14px;
+                               font-weight: 200; line-height: 27px; }
 .topbar h3 a                 { padding: 0px; }
 .topbar div > ul .active > a, .nav .active > a { background-color: rgba(0, 0, 0, 0.5); }
 .topbar div > ul a:hover, .nav a:hover         {  color: #000; }
 .topbar div > ul a, .nav a   { color: #000; line-height: 17px; }
+.topbar div > ul > li, .nav > li { font-size: 16px; }
 .topbar li                   { padding-top: 2px; }
 .topbar .home_active         { padding-top: 0px; border-top: 2px solid #FC6; }
 .topbar .people_active       { padding-top: 0px; border-top: 2px solid #6CF; }
@@ -11,13 +14,18 @@ address                      { font-size: 1.1em; }
 .topbar .news_active         { padding-top: 0px; border-top: 2px solid #6F6; }
 .topbar .contact_active      { padding-top: 0px; border-top: 2px solid #66F; }
 .hero-unit                   { padding-left: 0; }
-.hero-unit h1                { background-color: rgba(255, 255, 255, 0.5); height: 70px; vertical-align: middle; }
+.hero-unit h1                { background-color: rgba(255, 255, 255, 0.5); 
+                               vertical-align: middle; }
+.hero-unit h1 a              { color: #404040; }
 .hero-body, .hero-unit h1    { padding-left: 60px; }
-.hero-body                   { color: #000; text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.75);}
+.hero-body                   { color: #000; text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.75); }
+.hero-body a                 { text-decoration: none; color: #000; font-size: 18px;
+                               font-weight: 200; line-height: 27px; }
+.hero-body a:hover           { text-decoration: none; }
+.hero-thumb                  { margin-bottom: 0px; -moz-border-radius: 0px;
+                               border-radius: 0px; -webkit-border-radius: 0px;
+                               padding: 30px 0px 30px 0px;}
 .white_fill                  { background-color: rgba(255, 255, 255, 0.9); }
-.inline.picture ul           { padding: 0; margin: 0 0 10px 0; text-align: center; }
-.inline.picture li           { display:inline; text-shadow:0 1px 0 #ffffff; }
-.photo                       { padding-bottom: 10px; text-align: center; }
 #nav li a:hover.home         { background-color: rgba(255, 204, 102, 0.1); }
 #nav li a:hover.people       { background-color: rgba(102, 204, 255, 0.1); }
 #nav li a:hover.research     { background-color: rgba(255, 102, 102, 0.1); }

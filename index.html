@@ -45,7 +45,7 @@
           <br/>
           <p style="text-align: right;"><a href="#/people" class="btn danger large">Learn more about us &raquo;</a></p>
         </div>
-      </div>
+      </div><!--
       <div class="row">
         <div class="span8">
            <div id="publications_show_latest" data-bind="template: {name:'show_latest_publication'}"></div>
@@ -53,91 +53,94 @@
         <div class="span8">
            <div id="news_show_latest" data-bind="template: {name:'show_latest_news'}"></div>
        </div>
-      </div>
+      </div>-->
       <script type="text/x-jquery-tmpl" id="show_latest_news">
       {{if news.newest()}}
-        <h2>News: ${news.newest().title}</h2>
+        <h2>${news.newest().title}</h2>
         <p>${news.newest().description}</p>
         <p><a class="btn" href="${news.newest().permalink}">Read More &raquo;</a></p>
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="show_latest_publication">
       {{if ko.app.models.publications.newest()}}
-        <h2>Publication: ${publications.newest().title}</h2>
+        <h2>${publications.newest().title}</h2>
         {{html publications.newest().abstract}}
-        <p><a class="btn" href="#/news/${publications.newest().permalink}">Read More &raquo;</a></p>
+        <p><a class="btn" href="${publications.newest().permalink}">Download &raquo;</a></p>
       {{/if}}
       </script>
     </section>
-<!--
+
     <section data-route="people" class="container">
-      <div id="staff_show" data-bind="template: {name:'show_staff'}"  class="container-fluid">
+      <div id="staff_show" data-bind="template: {name:'show_staff'}"  class="container">
       </div>
-      <div id="staff_list" class="row" data-bind="template: {name:'list_staff'}">
+      <div id="staff_list" class="container" data-bind="template: {name:'list_staff'}">
         
       </div>
       <script type="text/x-jquery-tmpl" id="show_staff">
-      {{if selected_person()}}
-        <div class="sidebar" style="align: center;">
-          <div class="photo">
-            <img src="${selected_person().image}"
-                 alt="${selected_person().name}"/>
-          </div>
-          <div class="inline picture">
-            <ul>
-              <li><img style="vertical-align: middle;" src="static/img/email.png"/></li>
-              <li><a href="mailto:somemail@psi.uminho.pt">somemail@psi.uminho.pt</a></li>
-            </ul>
-          </div>
+      {{if staff.selected()}}
+      <div class="hero-unit" style="background-image: url('static/img/staff/${staff.selected().name}.jpg'); height: 470px;">
+        <h1> ${staff.selected().name} 
+          <small style="color: #404040">${staff.selected().title}</small>
+        </h1>
+        <p/>
+        <div class="hero-body" style="width: 50%;">
+          {{html staff.selected().description}}
+          <a href="mailto:${staff.selected().email()}">
+            <img style="vertical-align: middle;"
+                 src="static/img/email.png" alt="Say Hi to ${staff.selected().name}"/>
+          </a>
+          <br/>
         </div>
-        <div class="content">
-          <h1>${selected_person().name} <small>${selected_person().title}</small></h1>
-          <div>
-            {{html selected_person().description}}
-          </div>
-        </div>
+      </div>
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="list_staff">
-      {{each staff}}
-        <div class="span4">
-          <a href="#/people/${permalink}"><img src="${image}" alt="${name}"/></a>
-          <h3><a href="#/people/${permalink}">${name}</a></h3>
-          <em>${title}</em>
-          <p/>
-        </div>
+      <h1>People</h1>
+      {{each staff.collection()}} 
+        <a href="#/people/${permalink}">
+          <div class="hero-unit hero-thumb" style="background-image: url('static/img/staff/${name}.jpg'); height: 25px; background-position: 0px;">
+            <h1 style="font-size: 1.5em;">
+              ${name}
+              <small style="color: #404040">${title}</small>
+            </h1>
+          </div>
+        </a>
       {{/each}}
       </script>
     </section>
 
     <section data-route="research" class="container">
-      Research goes here
+      <h1>Research</h1>
+      <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Etiam porta sem malesuada magna mollis euismod. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam.</p>
     </section>
 
     <section data-route="publications" class="container">
       <div id="publications_show" class="row" data-bind="template: {name:'show_publications'}"  class="container-fluid">
       </div>
-      <div id="publications_list" class="row" data-bind="template: {name:'list_publications'}">
+      <div id="publications_list" class="container" data-bind="template: {name:'list_publications'}">
       </div>
       <script type="text/x-jquery-tmpl" id="show_publications">
-      {{if selected_publication()}}
+      {{if publications.selected()}}
         <div class="span16">
-          <h3>${selected_publication().title} <small>on ${selected_publication().date}</small></h3>
-          <p>By <a href="#/people/${escape(selected_publication().author)}">${selected_publication().author}</a></p>
+          <h3>${publications.selected().title} <small>on ${publications.selected().date}</small></h3>
+          <p>By <a href="#/people/${escape(publications.selected().author)}">
+            ${publications.selected().author}</a></p>
           <hr/>
-          {{html selected_publication().abtract}}
+          {{html publications.selected().abtract}}
         </div>
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="list_publications">
-      {{each publications}}
-        <div class="span16">
-          <h3>${title} <small>on ${date}</small></h3>
-          <hr/>
-          {{html abstract}}
-          <p><a class="btn" href="#/publications/${permalink}">More Details &raquo;</a></p>
-        </div>
+      <h1>Publications</h1>
+      <ul>
+      {{each publications.collection()}}
+        <li>${apa} <a href="#/publications/${permalink}">&raquo;</a>
+        {{if download}}
+          <a href="${download}"><img src="static/img/page_go.png"/></a>
+        {{/if}}
+        </li>
       {{/each}}
+      </ul>
       </script>
     </section>
 
@@ -147,62 +150,63 @@
       <div id="news_list" class="row" data-bind="template: {name:'list_news'}">
       </div>
       <script type="text/x-jquery-tmpl" id="show_news">
-      {{if selected_news_item()}}
+      {{if news.selected()}}
         <div class="span16">
-          <h3>${selected_news_item().title} <small>on ${selected_news_item().date}</small></h3>
-          <p>By <a href="#/people/${ko.app.permalinks.staff(selected_news_item().author())}">${selected_news_item().author}</a></p>
+          <h1>${news.selected().title} <small>on ${news.selected().date}</small></h1>
+          <p>By 
+            <a href="#/people/${ko.app.permalinks.staff(news.selected().author())}">
+              ${news.selected().author}
+            </a>
+          </p>
           <hr/>
-          {{html selected_news_item().body}}
+          {{html news.selected().body}}
         </div>
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="list_news">
-      {{each news}}
+      <div class="span16"><h1>News</h1></div>
+      {{each news.collection()}}
         <div class="span16">
-          <h3>${title} <small>on ${date}</small></h3>
-          <p>By <a href="#/people/${ko.app.permalinks.staff(author())}">${author}</a></p>
-          <hr/>
+          <h4>${title} <small>on ${date}</small></h4>
           {{html body}}
-          <p><a class="btn" href="#/news/${permalink}">Full Page &raquo;</a></p>
+          <a href="#/news/${permalink}">Read More &raquo;</a>
+          {{if title !== news.oldest() }}
+            <hr/>
+          {{/if}}
         </div>
       {{/each}}
       </script>
     </section>
 
     <section data-route="contact" class="container">
-      <div class="container-fluid">
-        <div class="sidebar">
-          <address>
-            Isabel Soares<br/>
-            Escola de Psicologia<br/>
-            Universidade do Minho<br/>
-            Campus de Gualtar<br/>
-            4710-057 Braga
-          </address>
-          <div class="inline picture">
-            <ul>
-              <li><img style="vertical-align: middle;" src="static/img/email.png"/></li>
-              <li><a href="mailto:somemail@psi.uminho.pt">somemail@psi.uminho.pt</a></li>
-            </ul>
+      <div class="container">
+        <h1>Contact</h1>
+        <div class="hero-unit">
+          <div class="hero-body">
+            Google map
           </div>
         </div>
-        <div class="content">
-          <div class="hero-unit">
-            <div class="hero-body">
-              Google map
-            </div>
-          </div>
-        </div>
+        <div>
+        <address>
+          Isabel Soares 
+          <a href="mailto:somemail@psi.uminho.pt"><img src="static/img/email.png"/></a> <br/>
+          Escola de Psicologia<br/>
+          Universidade do Minho<br/>
+          Campus de Gualtar<br/>
+          4710-057 Braga
+        </address>
       </div>
     </section>
--->
+
     <div class="container" id="footer">
       <footer>
-        <p align="right">Copyright 2011 Attachment Studies Group, University of Minho</p>
+        <p align="right"><small>Copyright 2011 Attachment Studies Group, University of Minho</small></p>
       </footer>
     </div>
 
     <script src="static/models.js" type="text/javascript" charset="utf-8">
+    </script>
+    <script src="static/helpers.js" type="text/javascript" charset="utf-8">
     </script>
     <script src="static/visuals.js" type="text/javascript" charset="utf-8">
     </script>
