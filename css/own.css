@@ -1,0 +1,48 @@
+address, ul.publications li  { font-size: 14px; font-weight: 200; }
+p                            { font-size: 14px;
+                               font-weight: 200; line-height: 27px; }
+input.popover-input          { height: 28px; border: 1px solid #bfbfbf; }
+input.popover-input,
+input.popover-input:hover    { color: #000; }
+.popover-login .content div  { margin-bottom: 10px;}
+.popover-login .content      { text-align: center; }
+.topbar h3 a                 { padding: 0px; }
+.topbar div > ul .active > a, 
+.nav .active > a             { background-color: rgba(0, 0, 0, 0.5); }
+.topbar div > ul a:hover, 
+.nav a:hover                 {  color: #000; }
+.topbar div > ul a, .nav a   { color: #000; line-height: 17px; }
+.topbar div > ul > li,
+.nav > li                    { font-size: 16px; }
+.topbar li                   { padding-top: 2px; }
+.topbar .home_active         { padding-top: 0px; border-top: 2px solid #FC6; }
+.topbar .people_active       { padding-top: 0px; border-top: 2px solid #6CF; }
+.topbar .research_active     { padding-top: 0px; border-top: 2px solid #F66; }
+.topbar .publications_active { padding-top: 0px; border-top: 2px solid #F6C; }
+.topbar .news_active         { padding-top: 0px; border-top: 2px solid #6F6; }
+.topbar .contact_active      { padding-top: 0px; border-top: 2px solid #66F; }
+.hero-unit                   { padding-left: 0; }
+.hero-unit h1                { background-color: rgba(255, 255, 255, 0.5); 
+                               vertical-align: middle; }
+.hero-unit h1 a              { color: #404040; }
+.hero-body, .hero-unit h1    { padding-left: 60px; }
+.hero-body                   { color: #000; text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.75); }
+.hero-body a                 { text-decoration: none; color: #000; font-size: 18px;
+                               font-weight: 200; line-height: 27px; }
+.hero-body a:hover           { text-decoration: none; }
+.hero-thumb                  { margin-bottom: 0px; -moz-border-radius: 0px;
+                               border-radius: 0px; -webkit-border-radius: 0px;
+                               padding: 30px 0px 30px 0px;}
+.white_fill                  { background-color: rgba(255, 255, 255, 0.9); }
+#nav li a:hover.home         { background-color: rgba(255, 204, 102, 0.1); }
+#nav li a:hover.people       { background-color: rgba(102, 204, 255, 0.1); }
+#nav li a:hover.research     { background-color: rgba(255, 102, 102, 0.1); }
+#nav li a:hover.publications { background-color: rgba(255, 102, 204, 0.1); }
+#nav li a:hover.news         { background-color: rgba(102, 255, 102, 0.1); }
+#nav li a:hover.contact      { background-color: rgba(102, 102, 255, 0.1); }
+.popover-wrapper             { position: relative; right: 70px; }
+.popover                     { display: block; top: 40px; }
+.inner.popover-login         { width: 185px; background-color: rgba(255, 255, 255, 0); }
+.popover.below .arrow        { border-bottom-color: rgba(245, 245, 245, 1); }
+.btn.icon                    { width: 16px; height: 16px; padding: 1px; 
+                               margin: 1px; text-align: center; display: inline-block;}
