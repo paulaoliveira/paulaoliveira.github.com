@@ -40,7 +40,7 @@ input.popover-input:hover    { color: #000; }
 #nav li a:hover.publications { background-color: rgba(255, 102, 204, 0.1); }
 #nav li a:hover.news         { background-color: rgba(102, 255, 102, 0.1); }
 #nav li a:hover.contact      { background-color: rgba(102, 102, 255, 0.1); }
-.popover-wrapper             { position: relative; right: 70px; }
+.popover-wrapper             { position: relative; right: 145px; }
 .popover                     { display: block; top: 40px; }
 .inner.popover-login         { width: 185px; background-color: rgba(255, 255, 255, 0); }
 .popover.below .arrow        { border-bottom-color: rgba(245, 245, 245, 1); }
