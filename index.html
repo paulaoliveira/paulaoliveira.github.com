@@ -18,6 +18,8 @@
     </script>
     <script src="static/js/ss.js" type="text/javascript" charset="utf-8">
     </script>
+    <script src="static/js/bootstrap.modal.js" type="text/javascript" 
+            charset="utf-8"></script>
   </head>
   <body>
     <div class="topbar">
@@ -32,9 +34,15 @@
             <li id="nav_news"><a class="news" href="#/news">News</a></li>
             <li id="nav_contact"><a class="contact" href="#/contact">Contact</a></li>
           </ul>
+          <ul class="nav secondary-nav">
+            <li><a href="#" data-controls-modal="modal-login"
+                   data-backdrop="true" data-keyboard="true">Login</a></li>
+          </ul>
         </div>
       </div>
     </div>
+    
+    <!-- <button  class="btn danger">Launch Modal</button> -->
 
     <section data-route="home" class="container">
       <div class="hero-unit" style="background-image: url('static/img/hero.jpg');">
@@ -56,16 +64,16 @@
       </div>-->
       <script type="text/x-jquery-tmpl" id="show_latest_news">
       {{if news.newest()}}
-        <h2>${news.newest().title}</h2>
-        <p>${news.newest().description}</p>
-        <p><a class="btn" href="${news.newest().permalink}">Read More &raquo;</a></p>
+        <h2>{{= news.newest().title}}</h2>
+        <p>{{= news.newest().description}}</p>
+        <p><a class="btn" href="{{= news.newest().permalink}}">Read More &raquo;</a></p>
       {{/if}}
       </script>
       <script type="text/x-jquery-tmpl" id="show_latest_publication">
       {{if ko.app.models.publications.newest()}}
-        <h2>${publications.newest().title}</h2>
+        <h2>{{= publications.newest().title}}</h2>
         {{html publications.newest().abstract}}
-        <p><a class="btn" href="${publications.newest().permalink}">Download &raquo;</a></p>
+        <p><a class="btn" href="{{= publications.newest().permalink}}">Download &raquo;</a></p>
       {{/if}}
       </script>
     </section>
@@ -78,16 +86,16 @@
       </div>
       <script type="text/x-jquery-tmpl" id="show_people">
       {{if people.selected()}}
-      <div class="hero-unit" style="background-image: url('static/img/people/${people.selected().name}.jpg'); height: 470px;">
-        <h1> ${people.selected().name} 
-          <small style="color: #404040">${people.selected().title}</small>
+      <div class="hero-unit" style="background-image: url('static/img/people/{{= people.selected().name}}.jpg'); height: 470px;">
+        <h1> {{= people.selected().name}} 
+          <small style="color: #404040">{{= people.selected().title}}</small>
         </h1>
         <p/>
         <div class="hero-body" style="width: 50%;">
           {{html people.selected().description}}
-          <a href="mailto:${people.selected().email()}">
+          <a href="mailto:{{= people.selected().email()}}">
             <img style="vertical-align: middle;"
-                 src="static/img/email.png" alt="Say Hi to ${people.selected().name}"/>
+                 src="static/img/email.png" alt="Say Hi to {{= people.selected().name}}"/>
           </a>
           <br/>
         </div>
@@ -97,11 +105,11 @@
       <script type="text/x-jquery-tmpl" id="list_people">
       <h1>People</h1>
       {{each people.collection()}} 
-        <a href="${permalink}">
-          <div class="hero-unit hero-thumb" style="background-image: url('static/img/people/${name}.jpg'); height: 25px; background-position: 0px;">
+        <a href="{{= permalink}}">
+          <div class="hero-unit hero-thumb" style="background-image: url('static/img/people/{{= name}}.jpg'); height: 25px; background-position: 0px;">
             <h1 style="font-size: 1.5em;">
-              ${name}
-              <small style="color: #404040">${title}</small>
+              {{= name}}
+              <small style="color: #404040">{{= title}}</small>
             </h1>
           </div>
         </a>
@@ -124,15 +132,15 @@
       </div>
       <script type="text/x-jquery-tmpl" id="show_publications">
       {{if publications.selected()}}
-      <h1>${publications.selected().title} <small>on ${publications.selected().date} {{if publications.selected().download}}
-        <a href="${publications.selected().download()}"><img src="static/img/disk.png"/></a>
+      <h1>{{= publications.selected().title}} <small>on {{= publications.selected().date}} {{if publications.selected().download}}
+        <a href="{{= publications.selected().download()}}"><img src="static/img/disk.png"/></a>
       {{/if}}</small></h1>
       <p>
       {{if publications.selected().members_authors() && 
            publications.selected().members_authors().length > 0}}
       Team Members Involved 
         {{each publications.selected().members_authors()}}
-        <a href="${ko.app.permalinks.people(this.toString())}">${this}</a
+        <a href="{{= ko.app.permalinks.people(this.toString())}}">{{= this}}</a
         >{{if ko.app.helpers.except_last(this.toString(), publications.selected().members_authors())}}, {{/if}}
         {{/each}}
       {{/if}}
@@ -145,7 +153,7 @@
       <h1>Publications</h1>
       <ul>
       {{each publications.collection()}}
-        <li>${apa} <a href="${permalink}">&raquo;</a></li>
+        <li>{{= apa}} <a href="{{= permalink}}">&raquo;</a></li>
       {{/each}}
       </ul>
       </script>
@@ -158,10 +166,10 @@
       </div>
       <script type="text/x-jquery-tmpl" id="show_news">
       {{if news.selected()}}
-      <h1>${news.selected().title} <small>on ${news.selected().date}</small></h1>
+      <h1>{{= news.selected().title}} <small>on {{= news.selected().date}}</small></h1>
       <p>By 
-        <a href="${ko.app.permalinks.people(news.selected().author())}">
-          ${news.selected().author}
+        <a href="{{= ko.app.permalinks.people(news.selected().author())}}">
+          {{= news.selected().author}}
         </a>
       </p>
       <hr/>
@@ -171,9 +179,9 @@
       <script type="text/x-jquery-tmpl" id="list_news">
       <h1>News</h1>
       {{each news.collection()}}
-      <h2>${title} <small>on ${date}</small></h2>
+      <h2>{{= title}} <small>on {{= date}}</small></h2>
       {{html body}}
-      <a href="${permalink}">Read More &raquo;</a>
+      <a href="{{= permalink}}">Read More &raquo;</a>
       {{if !this.title().match(new RegExp(news.oldest().title())) }}
         <hr/>
       {{/if}}
@@ -199,6 +207,33 @@
         </address>
       </div>
     </section>
+    
+    <div id="modal-login" class="modal hide">
+      <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Login</h3>
+      </div>
+      <div class="modal-body">
+        <form>
+          <fieldset>
+            <div class="clearfix">
+              <label for="appendedInput">User Name</label>
+              <div class="input">
+                <div class="input-prepend">
+                  <span class="add-on">@</span>
+                  <input class="medium" id="user-name-input"
+                         name="user-name-input" size="16" type="text" />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn primary">Primary</a>
+        <a href="#" class="btn secondary">Secondary</a>
+      </div>
+    </div>
 
     <div class="container" id="footer">
       <footer>
