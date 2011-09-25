@@ -1,0 +1,9 @@
+{ "name"            : "html5-cms-server"
+, "description"     : "Sample Client Side Server"
+, "version"         : "0.0.2"
+, "author"          : "Nuno Job <nunojobpinto@gmail.com> (http://nunojob.com)"
+, "keywords"        : ["couchdb", "cms", "html5", "javascript", "sugarskull", "knockoutjs"]
+, "dependencies"    : {"konphyg" : "1.0.2", "express": "4.2.x"}
+, "main"            : "./server.js"
+, "engines"         : { "node": ">=0.3.6" }
+}
