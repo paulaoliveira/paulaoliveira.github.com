@@ -1,6 +1,7 @@
 address                      { font-size: 14px; font-weight: 200; }
 p                            { font-size: 14px;
                                font-weight: 200; line-height: 27px; }
+input.medium                 { height: 28px; border: 1px solid #bfbfbf; }
 .topbar h3 a                 { padding: 0px; }
 .topbar div > ul .active > a, .nav .active > a { background-color: rgba(0, 0, 0, 0.5); }
 .topbar div > ul a:hover, .nav a:hover         {  color: #000; }
@@ -32,3 +33,8 @@ p                            { font-size: 14px;
 #nav li a:hover.publications { background-color: rgba(255, 102, 204, 0.1); }
 #nav li a:hover.news         { background-color: rgba(102, 255, 102, 0.1); }
 #nav li a:hover.contact      { background-color: rgba(102, 102, 255, 0.1); }
+.popover-wrapper             { position: relative; right: 70px; }
+.popover                     { display: block; top: 40px; }
+.inner.popover-login         { width: 185px; }
+.btn.icon                    { width: 16px; height: 16px; padding: 1px; 
+                               margin: 1px; text-align: center; display: inline-block;}

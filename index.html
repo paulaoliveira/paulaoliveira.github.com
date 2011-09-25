@@ -20,6 +20,8 @@
     </script>
     <script src="static/js/bootstrap.modal.js" type="text/javascript" 
             charset="utf-8"></script>
+    <script src="static/js/bootstrap.popover.modal.js" type="text/javascript" 
+            charset="utf-8"></script>
   </head>
   <body>
     <div class="topbar">
@@ -35,14 +37,60 @@
             <li id="nav_contact"><a class="contact" href="#/contact">Contact</a></li>
           </ul>
           <ul class="nav secondary-nav">
-            <li><a href="#" data-controls-modal="modal-login"
-                   data-backdrop="true" data-keyboard="true">Login</a></li>
+            <li>
+              <div class="hide">
+              <a href="#/login" data-controls-popovermodal="modal-login" data-keyboard="true">
+                Login
+              </a>
+              </div>
+            </li>
+            <div class="hide popover-wrapper" id="modal-login">
+              <div class="popover below">
+                <div class="arrow"></div>
+                <div class="popover-login inner">
+                  <h3 class="title">Login</h3>
+                  <div class="content">
+                    <div class="clearfix">
+                      <label for="email-input" class="hide">
+                        Email
+                      </label>
+                      <div class="input">
+                        <div class="input">
+                          <input class="popover_input medium"
+                                 id="email-input" size="16"
+                                 name="email-input" type="text" 
+                                 placeholder="Email"/>
+                        </div>
+                      </div>
+                    </div>
+                    <br/>
+                    <div class="clearfix">
+                      <label for="password-input" class="hide">
+                        Password
+                      </label>
+                      <div class="input">
+                        <div class="input">
+                          <input class="popover_input medium"
+                                 id="password-input" size="16"
+                                 name="password-input" type="text" 
+                                 placeholder="Password"/>
+                        </div>
+                      </div>
+                    </div>
+                    <br/>
+                    <div style="text-align: right">
+                      <a class="close_icon btn icon">×</a>
+                      <a href="#/" class="btn success icon">&raquo;</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </ul>
         </div>
       </div>
     </div>
-    
-    <!-- <button  class="btn danger">Launch Modal</button> -->
+    </div>
 
     <section data-route="home" class="container">
       <div class="hero-unit" style="background-image: url('static/img/hero.jpg');">
@@ -207,32 +255,19 @@
         </address>
       </div>
     </section>
-    
-    <div id="modal-login" class="modal hide">
+
+<!--    <div id="modal-login" class="modal hide">
       <div class="modal-header">
         <a href="#" class="close">&times;</a>
         <h3>Login</h3>
       </div>
       <div class="modal-body">
-        <form>
-          <fieldset>
-            <div class="clearfix">
-              <label for="appendedInput">User Name</label>
-              <div class="input">
-                <div class="input-prepend">
-                  <span class="add-on">@</span>
-                  <input class="medium" id="user-name-input"
-                         name="user-name-input" size="16" type="text" />
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </form>
+
       </div>
       <div class="modal-footer">
         <a href="#" class="btn primary">Primary</a>
         <a href="#" class="btn secondary">Secondary</a>
-      </div>
+      </div>-->
     </div>
 
     <div class="container" id="footer">
