@@ -24,7 +24,7 @@ input.popover-input:hover    { color: #000; }
 .hero-unit                   { padding-left: 0; }
 .hero-unit h1                { background-color: rgba(255, 255, 255, 0.5); 
                                vertical-align: middle; }
-.hero-unit h1 a              { color: #404040; }
+.hero-unit h1 a              { color: #404040; font-size: 4.2em; }
 .hero-body, .hero-unit h1    { padding-left: 60px; }
 .hero-body                   { color: #000; text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.75); }
 .hero-body a                 { text-decoration: none; color: #000; font-size: 18px;
